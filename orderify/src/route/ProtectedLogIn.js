@@ -12,10 +12,9 @@ const ProtectedLogIn = ({ Component }) => {
 
     useEffect(() => {
         const storedUserData = JSON.parse(localStorage.getItem('userData'));
-        if (token) {
+        if (token ) {
             try {
                 const decodedToken = jwtDecode(token);
-
                 const isTokenExpired = decodedToken.exp < Date.now() / 1000;
 
                 if (!isTokenExpired) {
@@ -42,10 +41,17 @@ const ProtectedLogIn = ({ Component }) => {
                 toast.error("Invalid  token");
                 navigate('/login');
             }
-        } else {
-            navigate('/login');
+        } else{
+
         }
     }, [token,location.pathname]);
+
+    useEffect(()=>{
+        if(!token){
+            navigate('/login');
+        }
+    },[token])
+   
     return (
         userData ? <Component userData={userData} /> : null
     );
