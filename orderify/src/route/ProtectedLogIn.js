@@ -1,4 +1,5 @@
-import jwtDecode from 'jwt-decode';
+// To this:
+import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
